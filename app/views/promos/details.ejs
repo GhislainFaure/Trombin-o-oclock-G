@@ -1,0 +1,18 @@
+<%- include('../partials/header') %>
+<h2>Promo : <%= promo.name %></h2>
+
+<p>
+  Github:
+  <a href="<%= promo.github_organization %>" target="_blank"
+    ><%= promo.github_organization %></a
+  >
+</p>
+<nav>
+  <ul>
+    <li><a href="/promo/<%= promo.id %>/students">Liste des étudiants</a></li>
+    <li><a href="#">Modifier la promo</a></li>
+  </ul>
+</nav>
+<img src="<%= promo.github_organization %>.png" alt="" />
+
+<%- include('../partials/footer') %>
