@@ -11,20 +11,22 @@ module.exports = {
   details: (req, res, next) => {
     const id = req.params.id;
 
-    promo = promos.find((promo) => {
+    let promo = promos.find((promo) => {
       return promo.id === Number(id);
     });
     res.render("promos/details", { promo });
   },
-  students: (req, res, next) => {
-    const promoId = req.params.id;
 
-    promo = promos.find((promo) => {
+  students: (req, res, next) => {
+    const id = req.params.id;
+
+    let promo = promos.find((promo) => {
       return promo.id === Number(id);
     });
+
     if (promo) {
       const studentsOfPromo = students.filter((student) => {
-        return student.promo === Number(promoId);
+        return student.promo === Number(id);
       });
 
       res.render("promos/students", {
