@@ -1,5 +1,5 @@
 body {
-    background-color: #ccc;
+    background-color:coral;
 }
 
 header, main, footer {
@@ -11,7 +11,7 @@ header, footer {
 }
 
 main {
-    background-color: #fff;
+    background-color:honeydew;
     padding: 2em;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
@@ -88,7 +88,7 @@ form button:active {
 }
 
 .cards .card a {
-    background-color: #007bff;
+    background-color:coral;
     color: #fff;
     border-radius: 0.5em;
     padding: 0.5em;

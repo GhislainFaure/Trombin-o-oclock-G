@@ -1,0 +1,29 @@
+<%- include('../partials/header') %>
+
+<h1>
+  Liste des étudiants de la promo : <%= promo.name %></h1>
+  <ul class="cards">
+    <% for(const student of students){ %>
+    <li class="card">
+      <a href="#">
+        <figure>
+          <img src= <%= student.profile_picture_url  %>  alt="" />
+          <figcaption><%= student.first_name %> <%= student.last_name %></figcaption>
+        </figure>
+      </a>
+    </li>
+
+    <%} %>
+  </ul>
+
+  <nav class="pagination">
+    <ul>
+      <li><a href="#">Précedent</a></li>
+      <li><a href="#">1</a></li>
+      <li class="active"><span>2</span></li>
+      <li><a href="#">3</a></li>
+      <li><a href="#">Suivant</a></li>
+    </ul>
+  </nav>
+  <%- include('../partials/footer') %>
+</h1>
