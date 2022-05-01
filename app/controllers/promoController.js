@@ -1,40 +1,36 @@
-const promos = require("../../data/promos.json");
-const students = require("../../data/students.json");
+const client = require("../dbClient");
 
 module.exports = {
-  list: (req, res) => {
-    res.render("promos/list", {
-      promos,
-    });
+  list: async (req, res) => {
+    const query = `SELECT * FROM "promo"`;
+    try {
+      const resultats = await client.query(query);
+      res.render("promos/list", {
+        promos: resultats.rows,
+      });
+    } catch (error) {
+      console.error(error);
+      return res.send("Something went wrong dude");
+    }
   },
 
-  details: (req, res, next) => {
+  details: async (req, res, next) => {
     const id = req.params.id;
+    const query = `SELECT * FROM "promo" WHERE "id"=${id}`;
 
-    let promo = promos.find((promo) => {
-      return promo.id === Number(id);
-    });
-    res.render("promos/details", { promo });
-  },
-
-  students: (req, res, next) => {
-    const id = req.params.id;
-
-    let promo = promos.find((promo) => {
-      return promo.id === Number(id);
-    });
-
-    if (promo) {
-      const studentsOfPromo = students.filter((student) => {
-        return student.promo === Number(id);
-      });
-
-      res.render("promos/students", {
-        promo,
-        students: studentsOfPromo,
-      });
-    } else {
-      next();
+    try {
+      const resultats = await client.query(query);
+      const promo = resultats.rows[0];
+      if (promo) {
+        res.render("promos/details", {
+          promo,
+        });
+      } else {
+        next();
+      }
+    } catch (error) {
+      console.error(error);
+      return res.send("Something went wrong Dude");
     }
   },
 };

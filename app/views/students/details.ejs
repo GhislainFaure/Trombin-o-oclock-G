@@ -1,0 +1,20 @@
+<%- include('../partials/header') %>
+
+<div class="student">
+    <div class="student-avatar">
+        <img src="<%= student.profile_picture_url %>" alt="">
+    </div>
+    <div class="student-description">
+        <h1><%= student.first_name %> <%= student.last_name %></h1>
+        <p>Étudiant</p>
+        <p>Promo: <a href="/promos/<%= student.promo_id %>"><em><%= promo.name %></em></a></p>
+        <p>Pseudo Github : <em><%= student.github_username %> </em></p>
+        <nav>
+            <ul>
+                <li><a href="student_edit.html">Modifier la fiche de l'étudiant</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<%- include('../partials/footer') %>

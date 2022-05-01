@@ -5,7 +5,7 @@
   <ul class="cards">
     <% for(const student of students){ %>
     <li class="card">
-      <a href="#">
+      <a href="/students/<%= student.id %>">
         <figure>
           <img src= <%= student.profile_picture_url  %>  alt="" />
           <figcaption><%= student.first_name %> <%= student.last_name %></figcaption>

@@ -1,0 +1,4 @@
+promo: name, github_organization
+student: first_name, last_name, github_username, profile_picture_url
+
+FAIRE PARTI DE, ON promo, 11 student
