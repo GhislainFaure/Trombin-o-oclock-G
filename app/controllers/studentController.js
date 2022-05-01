@@ -2,6 +2,18 @@ const dataMapper = require("../dataMapper");
 const client = require("../dbClient");
 
 module.exports = {
+  list: async (req, res, next) => {
+    try {
+      const students = await dataMapper.getStudents();
+      res.render("students/list", {
+        students
+      });
+    } catch (error) {
+      console.error(error);
+      return res.send("Something went wrong dude");
+    }
+
+  },
   studentsByPromo: async (req, res, next) => {
     const id = req.params.id;
 

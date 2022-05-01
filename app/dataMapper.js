@@ -1,5 +1,6 @@
 const client = require("./dbClient");
 const dataMapper = {
+
   getPromoById: async (id) => {
     const queryPromo = `SELECT * FROM "promo" WHERE "id" = ${id}`;
     return (await client.query(queryPromo)).rows[0];
@@ -17,7 +18,10 @@ const dataMapper = {
     const query = `SELECT * FROM "promo"`;
     return (await client.query(query)).rows;
   },
-  
+  getStudents: async () => {
+    const query = `SELECT * FROM "student"`;
+    return (await client.query(query)).rows;
+  },
 };
 
 module.exports = dataMapper;
