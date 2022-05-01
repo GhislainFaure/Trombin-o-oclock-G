@@ -1,15 +1,14 @@
+const dataMapper = require("../dataMapper");
 const client = require("../dbClient");
 
 module.exports = {
   studentsByPromo: async (req, res, next) => {
     const id = req.params.id;
-    const query = `SELECT * FROM "promo" WHERE "id"=${id}`;
-    const queryStudents = `SELECT * FROM "student" WHERE "promo_id"=${id}`;
 
     try {
-      const promo = (await client.query(query)).rows[0];
+      const promo = await dataMapper.getPromoById(id);
       if (promo) {
-        const students = (await client.query(queryStudents)).rows;
+        const students = await dataMapper.getStudentsByPromoId(id);
 
         res.render("promos/students", {
           promo,
@@ -25,15 +24,14 @@ module.exports = {
   },
   details: async (req, res, next) => {
     const id = req.params.id;
-    const query = `SELECT * FROM "student" WHERE "id" =${id}`;
 
     try {
-      const student = (await client.query(query)).rows[0];
+      const student = await dataMapper.getStudentById(id);
       if (student) {
-        const queryPromo = `SELECT "name" FROM "promo" WHERE "id" = ${student.promo_id}`;
-        const promo = (await client.query(queryPromo)).rows[0];
+        const promo = await dataMapper.getPromoById(student.promo_id);
         res.render("students/details", {
-          student, promo
+          student,
+          promo,
         });
       } else {
         next();
