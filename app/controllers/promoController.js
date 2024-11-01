@@ -5,7 +5,7 @@ module.exports = {
     try {
       const promos = await dataMapper.getPromos();
       res.render("promos/list", {
-        promos
+        promos,
       });
     } catch (error) {
       console.error(error);

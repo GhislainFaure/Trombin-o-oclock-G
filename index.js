@@ -1,6 +1,9 @@
 require("dotenv").config();
 // import des bibliothèques et ressources requises pour initialiser l'app web
 const express = require("express");
+// const bodyParser = require("body-parser");
+// const multer = require("multer"); // v1.0.5
+// const upload = multer(); // for parsing multipart/form-data
 const router = require("./app/router");
 
 // création de notre objet express
@@ -10,8 +13,10 @@ const PORT = process.env.PORT || 5050;
 // on configure les vues et le moteur de template
 app.set("views", "./app/views");
 app.set("view engine", "ejs");
+app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 app.use(express.static("./public"));
+// app.use(bodyParser.json()); // for parsing application/json
 
 app.use(router);
 

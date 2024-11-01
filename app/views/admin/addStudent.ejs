@@ -1,0 +1,29 @@
+<%- include("../partials/header") %>
+<h1>Ajouter un étudiant</h1>
+
+<form method="POST">
+  <p>
+    <label for="promo">Promo</label>
+    <select name="promo" id="promo">
+      <% for(const promo of promos) { %>
+      <option value="<%=promo.id %>"><%= promo.name %></option>
+      <% } %>
+    </select>
+  </p>
+  <p>
+    <label>Prénom</label>
+    <input type="text" name="first_name"  />
+  </p>
+  <p>
+    <label>Nom</label>
+    <input type="text" name="last_name" />
+  </p>
+  <p>
+    <label>Pseudo Github</label>
+    <input type="text" name="github_username"  />
+  </p>
+  <p>
+    <button>Valider</button>
+  </p>
+</form>
+<%- include("../partials/footer") %>
