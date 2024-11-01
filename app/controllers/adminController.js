@@ -1,16 +1,23 @@
 const dataMapper = require("../dataMapper");
+const client = require("../dbClient");
 
 module.exports = {
   showStudentForm: async (req, res) => {
-    try {
-      const promos = await dataMapper.getPromos();
-      res.render("admin/addStudent", { promos });
-    } catch (error) {
-      console.error(error);
-      return res.send("Something went wrong dude");
+    if (req.session.login === "glux") {
+      try {
+        const promos = await dataMapper.getPromos();
+        res.render("admin/addStudent", { promos });
+      } catch (error) {
+        console.error(error);
+        return res.send("Something went wrong dude");
+      }
+    } else if (req.session.login != null) {
+      res.send(req.session.login + "you are not a admin!");
+    } else {
+      res.redirect("/login");
     }
   },
-  addStudent: async (req, res) => {
+  addStudent: async (req, res) => { 
     console.log(req.body);
 
     try {
